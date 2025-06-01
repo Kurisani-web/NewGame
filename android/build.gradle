@@ -45,21 +45,16 @@ allprojects {
 
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url 'https://www.jitpack.io' }
 
         // jcenter() is deprecated, include only if absolutely needed
         // jcenter()
     }
 
-    // ✅ FIX: Ensure React Native resolves locally instead of remote Maven
+    // ✅ FIX: Resolve 'com.facebook.react:react-native' using local project instead of remote
     configurations.all {
-        resolutionStrategy {
-            eachDependency { DependencyResolveDetails details ->
-                if (details.requested.group == 'com.facebook.react' &&
-                    details.requested.name == 'react-native') {
-                    details.useVersion('+')
-                }
-            }
+        resolutionStrategy.dependencySubstitution {
+            substitute module("com.facebook.react:react-native") using project(":react-native")
         }
     }
 }
