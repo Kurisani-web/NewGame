@@ -51,10 +51,6 @@ allprojects {
         // jcenter()
     }
 
-    // ✅ FIX: Resolve 'com.facebook.react:react-native' using local project instead of remote
-    configurations.all {
-        resolutionStrategy.dependencySubstitution {
-            substitute module("com.facebook.react:react-native") using project(":react-native")
-        }
-    }
+    // ❌ Removed invalid dependency substitution for ':react-native'
+    // This was causing "Project with path ':react-native' not found" error
 }
