@@ -6,8 +6,11 @@ buildscript {
         minSdkVersion = 16
         compileSdkVersion = 28
         targetSdkVersion = 28
-        googlePlayServicesVersion   = "12.0.1"
-        supportLibVersion           = "28.0.3"
+        googlePlayServicesVersion = "12.0.1"
+        supportLibVersion = "28.0.3"
+
+        // ✅ Add this line:
+        hermesEnabled = rootProject.ext.has("react") ? rootProject.ext.react.enableHermes : false
     }
     repositories {
         google()
