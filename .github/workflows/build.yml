@@ -17,14 +17,15 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'  # Fix here
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Build APK
+      - name: Clean Build and Assemble APK
         run: |
           cd android
+          ./gradlew clean
           ./gradlew assembleRelease
 
       - name: Upload APK
